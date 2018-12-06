@@ -1,18 +1,22 @@
 <template>
   <div id="app">
+    <AppHeader></AppHeader>
+    <AppMenu></AppMenu>
     <router-view/>
+    <AppFooter></AppFooter>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import AppHeader from '@/components/layouts/AppHeader'
+  import AppMenu from '@/components/layouts/AppMenu'
+  import AppFooter from '@/components/layouts/AppFooter'
+  export default {
+    name: 'App',
+    components:{
+      AppHeader,
+      AppMenu,
+      AppFooter
+    }
+  }
 </script>
-
-<style src="@/assets/vendors/bootstrap/css/bootstrap.min.css"></style>
-<style src="@/assets/vendors/font-awesome/css/all.css"></style>
-<style src="@/assets/css/animate.css"></style>
-<style src="@/assets/vendors/owl/css/owl.carousel.min.css"></style>
-<style src="@/assets/vendors/owl/css/owl.theme.default.min.css"></style>
-<style src="@/assets/css/index.css"></style>

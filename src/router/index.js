@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/pages/home/Home'
 import Login from "@/components/pages/login/Login";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -17,5 +17,6 @@ export default new Router({
       name: 'Login',
       component: Login
     }
-  ]
+  ],
+  mode: 'history'
 })

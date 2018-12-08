@@ -63,8 +63,21 @@
     </div>
 </template>
 <script>
+    import {mapActions, mapGetters} from 'vuex';
     export default {
+        data(){
+            return {
 
+            };
+        },
+        mounted(){
+            this.getCategoryProducts(this.$route.params.slug);
+        },
+        methods:{
+           getCategoryProducts(category) {
+               this.$store.dispatch('getCategoryProducts',category);
+           }
+        }
     }
 </script>
 <style src="@/assets/css/category.css"></style>

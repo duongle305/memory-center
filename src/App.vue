@@ -37,7 +37,12 @@
                     this.$store.commit('setToken',Helpers.getToken());
                     this.$store.commit('setIsLogged',true);
                     this.$store.dispatch('customerInfo');
-                    this.$store.dispatch('refresh');
+                    this.$store.dispatch('refresh').then(resp=>{
+
+                    }).catch(err=>{
+                        localStorage.clear();
+                        this.hasLogin();
+                    });
                 }else{
                     localStorage.clear();
                 }

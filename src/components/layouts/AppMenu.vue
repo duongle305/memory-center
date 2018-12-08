@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12">
                     <div class="menu-toogle">
-                        <a href="" class="menu-toogle-text">
+                        <a href="javascript:void(0);" class="menu-toogle-text">
                             <i class="fas fa-bars"></i>
                             <span>Danh mục sản phẩm</span>
                         </a>

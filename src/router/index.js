@@ -34,7 +34,7 @@ const router =  new Router({
     {
       path:'/category/:slug',
       name:'Category',
-      component:Category,
+      component: Category,
     },
     { path: '*', redirect: '/' }
   ],

@@ -9,8 +9,8 @@
                             <span>Danh mục sản phẩm</span>
                         </a>
                         <div class="list_menu_header menu_all_site col-lg-12">
-                            <ul class="ul_menu site-nav-vetical" v-html="categories">
-
+                            <ul class="ul_menu site-nav-vetical">
+                                <CategoryItem v-for="(category,index) in categories" :category="category" :key="index"></CategoryItem>
                             </ul>
                         </div>
                     </div>
@@ -42,47 +42,30 @@
 </template>
 <script>
     import {mapActions, mapGetters} from 'vuex';
+    import CategoryItem from '@/components/CategoryItem';
     export default {
+        components:{
+            CategoryItem,
+        },
         mounted(){
-            this.getCategory();
+            this.apiGetCategories();
         },
         computed:{
             ...mapGetters([
                 'getCategories'
             ]),
             categories(){
-                return this.parseCategory(this.$store.state.category.categories);
+                return this.$store.state.category.categories;
             }
         },
         methods:{
             ...mapActions([
-                'getCategory',
+                'apiGetCategories',
             ]),
-            parseCategory(categories){
-                let html = ``;
-                let index = 0;
-                for(let cate of categories){
-                    let arrow = '', childClass = '', uppercase = '', icons = '';
-                    if(cate.parent_id == null){
-                        arrow = '<i class="ti-angle-right drop-icon"></i>';
-                        uppercase = 'text-uppercase';
-                        if(cate.menu_icons){
-                            icons = JSON.parse(cate.menu_icons);
-                        }
-                    }else{
-                        childClass = 'col-lg-3 col-md-3';
-                    }
-                    html += `<li class="nav_item ${childClass}" >
-                                    <span class="cate-normal"  style="background-image: url(${icons.length ? 'http://lar-ecommerce.local/'+icons[0] :''})"></span>
-                                    <span class="cate-hover"  style="background-image: url(${icons.length ? 'http://lar-ecommerce.local/'+icons[1] :''})"></span>
-                                    <a href="/category/${cate.slug}" class="childClass ${uppercase}">${cate.title}
-                                       ${arrow}
-                                    </a>
-                                    ${cate.children.length > 0 ?'<ul class="row ul_content_right_1">' +this.parseCategory(cate.children) +'</ul>': ''}
-                              </li>`;
-                }
-                return html;
-            }
+            apiGetCategoryProducts(category){
+                this.$router.push('/category',{slug: category});
+                this.$store.dispatch('apiGetCategoryProducts',category);
+            },
         },
         data(){
             return {

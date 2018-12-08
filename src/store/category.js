@@ -4,19 +4,25 @@ const category = {
         categories:[],
         categoryProducts:[],
     },
+    getters:{
+        getCategories(state){
+            return state.categories;
+        },
+        getCategoryProducts(state) {
+            return state.categoryProducts;
+        }
+    },
     mutations:{
         setCategories(state, categories){
             state.categories = categories;
         },
-        getCategories(state){
-            return state.categories;
-        },
+
         setCategoryProducts(state, products){
             state.categoryProducts = products;
         }
     },
     actions:{
-        getCategory(context){
+        apiGetCategories(context){
             return new Promise((resolve, reject)=>{
                 api.get('/categories').then(resp=>{
                     context.commit('setCategories',resp.data);
@@ -26,7 +32,7 @@ const category = {
                 })
             });
         },
-        getCategoryProducts(context, category) {
+        apiGetCategoryProducts(context, category) {
             return new Promise((resolve, reject)=>{
                 api.get('/category/'+category).then(resp=>{
                     context.commit('setCategoryProducts',resp.data);

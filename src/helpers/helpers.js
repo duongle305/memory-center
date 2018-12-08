@@ -1,4 +1,5 @@
 const Helpers = {
+    imgUrl: 'http://lar-ecommerce.local/',
     feedback: (err)=>{
         console.log(err);
         Helpers.closeLoading();

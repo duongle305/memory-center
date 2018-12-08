@@ -7,7 +7,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item breadcrumb-home"><a href="#">Trang chủ</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">USB</li>
+                                <li class="breadcrumb-item active" aria-current="page"></li>
                             </ol>
                         </nav>
                     </div>
@@ -70,13 +70,15 @@
 
             };
         },
-        mounted(){
-            this.getCategoryProducts(this.$route.params.slug);
+        computed:{
+            ...mapGetters([
+                'getCategories'
+            ]),
+
         },
         methods:{
-           getCategoryProducts(category) {
-               this.$store.dispatch('getCategoryProducts',category);
-           }
+
+
         }
     }
 </script>

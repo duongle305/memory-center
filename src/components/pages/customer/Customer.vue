@@ -28,7 +28,7 @@
                             <th>Tình trạng thanh toán</th>
                             <th>Trạng thái</th>
                         </tr>
-                        <tr v-if="!getCustomer.orders.length">
+                        <tr v-if="getCustomer.orders && !getCustomer.orders.length">
                             <td colspan="6" class="text-center empty-tab">Không có đơn hàng nào</td>
                         </tr>
                         <tr v-else v-for="(item, index) in getCustomer.orders">

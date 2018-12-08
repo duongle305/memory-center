@@ -72,10 +72,10 @@
                     }else{
                         childClass = 'col-lg-3 col-md-3';
                     }
-                    html += `<li class="nav_item ${childClass}">
-                                    <span class="cate-icon" style="background-image: url(${icons.length ? 'http://lar-ecommerce.local/'+icons[0] :''})"></span>
-                                    <a class="childClass ${uppercase}" href="#" data-bg-normal="${icons.length ? 'http://lar-ecommerce.local/'+icons[0] :''}" title="${cate.title}"
-                                                                    data-bg-hover="${icons.length ? 'http://lar-ecommerce.local/'+icons[1] :''}">${cate.title}
+                    html += `<li class="nav_item ${childClass}" >
+                                    <span class="cate-normal"  style="background-image: url(${icons.length ? 'http://lar-ecommerce.local/'+icons[0] :''})"></span>
+                                    <span class="cate-hover"  style="background-image: url(${icons.length ? 'http://lar-ecommerce.local/'+icons[1] :''})"></span>
+                                    <a href="/category/${cate.slug}" class="childClass ${uppercase}">${cate.title}
                                        ${arrow}
                                     </a>
                                     ${cate.children.length > 0 ?'<ul class="row ul_content_right_1">' +this.parseCategory(cate.children) +'</ul>': ''}
@@ -92,13 +92,22 @@
     }
 </script>
 <style>
-    .cate-icon{
+    .cate-normal, .cate-hover{
         display: inline-block;
         width: 20px;
         height: 20px;
         position: absolute;
         left: 10px;
-        background-size: contain;
-        background-repeat: no-repeat;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+    }
+    .cate-hover{
+        opacity: 0;
+    }
+    li.nav_item:hover .cate-normal{
+        opacity: 0;
+    }
+    li.nav_item:hover .cate-hover{
+        opacity: 1;
     }
 </style>

@@ -58,17 +58,27 @@
             ...mapActions([
                 'getCategory',
             ]),
-            parseCategory(categories,parent_id = null){
+            parseCategory(categories){
                 let html = ``;
                 let index = 0;
                 for(let cate of categories){
-                    let icon = cate.parent_id == null ? '' : '';
-                    if(cate.parent_id == parent_id) index++;
-                    html += `<li class="nav_item">
-                                    <a class="text-uppercase" target="_blank" href="#" title="${cate.title}">${cate.title}
-                                    <i class="ti-angle-right drop-icon"></i>
+                    let arrow = '', childClass = '', uppercase = '', icons = '';
+                    if(cate.parent_id == null){
+                        arrow = '<i class="ti-angle-right drop-icon"></i>';
+                        uppercase = 'text-uppercase';
+                        if(cate.menu_icons){
+                            icons = JSON.parse(cate.menu_icons);
+                        }
+                    }else{
+                        childClass = 'col-lg-3 col-md-3';
+                    }
+                    html += `<li class="nav_item ${childClass}">
+                                    <span class="cate-icon" style="background-image: url(${icons.length ? 'http://lar-ecommerce.local/'+icons[0] :''})"></span>
+                                    <a class="childClass ${uppercase}" href="#" data-bg-normal="${icons.length ? 'http://lar-ecommerce.local/'+icons[0] :''}" title="${cate.title}"
+                                                                    data-bg-hover="${icons.length ? 'http://lar-ecommerce.local/'+icons[1] :''}">${cate.title}
+                                       ${arrow}
                                     </a>
-                                    ${cate.children.length > 0 ?'<ul class="ul_content_right_1 row">' +this.parseCategory(cate.children, cate.parent_id) +'</ul>': ''}
+                                    ${cate.children.length > 0 ?'<ul class="row ul_content_right_1">' +this.parseCategory(cate.children) +'</ul>': ''}
                               </li>`;
                 }
                 return html;
@@ -81,3 +91,14 @@
         }
     }
 </script>
+<style>
+    .cate-icon{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+</style>

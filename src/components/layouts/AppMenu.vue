@@ -9,16 +9,8 @@
                             <span>Danh mục sản phẩm</span>
                         </a>
                         <div class="list_menu_header menu_all_site col-lg-12">
-                            <ul class="ul_menu site-nav-vetical">
-                                <li class="nav_item lv1 li_check">
-                                    <a target="_blank" href="#" title="BEST SELLER">BEST SELLER
-                                        <i class="ti-angle-right drop-icon"></i>
-                                    </a>
-                                    <ul class="ul_content_right_1 row">
-                                        <li class="nav_item lv2 col-lg-3 col-md-3"><a target="_blank" href="" title="TOP SSD">TOP SSD</a></li>
-                                        <li class="nav_item lv2 col-lg-3 col-md-3"><a target="_blank" href="" title="Top USB">Top USB</a></li>
-                                    </ul>
-                                </li>
+                            <ul class="ul_menu site-nav-vetical" v-html="categories">
+
                             </ul>
                         </div>
                     </div>
@@ -49,7 +41,43 @@
     </div>
 </template>
 <script>
+    import {mapActions, mapGetters} from 'vuex';
     export default {
-        name: 'AppMenu',
+        mounted(){
+            this.getCategory();
+        },
+        computed:{
+            ...mapGetters([
+                'getCategories'
+            ]),
+            categories(){
+                return this.parseCategory(this.$store.state.category.categories);
+            }
+        },
+        methods:{
+            ...mapActions([
+                'getCategory',
+            ]),
+            parseCategory(categories,parent_id = null){
+                let html = ``;
+                let index = 0;
+                for(let cate of categories){
+                    let icon = cate.parent_id == null ? '' : '';
+                    if(cate.parent_id == parent_id) index++;
+                    html += `<li class="nav_item">
+                                    <a class="text-uppercase" target="_blank" href="#" title="${cate.title}">${cate.title}
+                                    <i class="ti-angle-right drop-icon"></i>
+                                    </a>
+                                    ${cate.children.length > 0 ?'<ul class="ul_content_right_1 row">' +this.parseCategory(cate.children, cate.parent_id) +'</ul>': ''}
+                              </li>`;
+                }
+                return html;
+            }
+        },
+        data(){
+            return {
+
+            };
+        }
     }
 </script>

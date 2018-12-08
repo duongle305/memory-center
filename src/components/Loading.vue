@@ -1,0 +1,75 @@
+<template>
+    <div class="lds-screen">
+        <div class="lds-dual-ring"></div>
+    </div>
+</template>
+<script>
+export default {}
+</script>
+<style scoped>
+    .lds-screen {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255,255,255,0.7);
+        z-index: 99999;
+        overflow: hidden; }
+    .lds-screen .lds-dual-ring {
+        display: inline-block;
+        width: 62px;
+        height: 62px; }
+    .lds-screen .lds-dual-ring:after {
+        position: absolute;
+        display: inline-block;
+        top: calc(50% - 31px);
+        left: calc(50% - 31px);
+        content: " ";
+        width: 62px;
+        height: 62px;
+        margin: 1px;
+        border-radius: 50%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #005bb2 transparent #005bb2 transparent;
+        animation: lds-dual-ring 1.2s linear infinite; }
+    .lds-screen .lds-dual-ring:before {
+        content: " ";
+        display: inline-block;
+        position: absolute;
+        top: calc(50% - 26px);
+        left: calc(50% - 26px);
+        width: 52px;
+        height: 52px;
+        margin: 1px;
+        border-radius: 50%;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #005bb2 transparent #005bb2 transparent;
+        animation: lds-dual-ring-1 1.2s ease-in infinite; }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg); }
+        100% {
+            transform: rotate(360deg); } }
+    @keyframes lds-dual-ring-1 {
+        0% {
+            transform: rotate(0deg); }
+        75% {
+            transform: rotate(-275deg); }
+        100% {
+            transform: rotate(-360deg); } }
+    .show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.5s linear;
+    }
+
+    .hide {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 0.5s, opacity 0.5s linear;
+    }
+</style>

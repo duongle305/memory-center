@@ -9,8 +9,10 @@
                         <span><i class="fas fa-star"></i> Khuyến Mãi Hot</span>
                         <span class="header__info__new__user"><i class="fas fa-user-alt"></i> Tài khoản
                         <div id="user-info">
-                            <router-link to="/login">Đăng nhập</router-link>
-                            <a href="" id="register"><b>Đăng kí</b></a>
+                            <router-link v-if="!getIsLogged" to="/login">Đăng nhập</router-link>
+                            <router-link v-if="!getIsLogged" to="/register"><b>Đăng ký</b></router-link>
+                            <router-link v-if="getIsLogged" to="/customer">Tài khoản</router-link>
+                            <a href="" v-if="getIsLogged"  @click.prevent="logout">Đăng xuất</a>
                         </div>
                         </span>
                     </div>
@@ -24,12 +26,7 @@
                         <i class="fas fa-bars icon-colapse"></i>
                         <router-link to="/"><img src="@/assets/image/logo.png" alt=""></router-link>
                     </div>
-                    <div class="col-lg-5 col-md-12 col-sm-12 text-center">
-                        <form action="" id="formsearch">
-                            <input id="searchbox" type="search" placeholder="Sản phẩm bạn muốn tìm ...">
-                            <button type="submit" id="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
+                    <SearchBox></SearchBox>
                     <div class="col-md-12 col-lg-4 mt-1 ">
                         <div class="header__main__hotline tele-infomation">
                             <span><i class="fa fa-phone"></i></span>
@@ -38,7 +35,6 @@
                                 <p> DĐ <b style="color:#ffba00;">037 585 274</b></p>
                             </div>
                         </div>
-                        <!-- the gio hang -->
                         <div class="header__main__hotline cart-infomation">
                             <div class="cart-infomation__fluid"></div>
                             <span><i class="fas fa-shopping-basket"></i>    </span>
@@ -78,7 +74,28 @@
     </header>
 </template>
 <script>
+    import SearchBox from '@/components/SearchBox';
+    import Helpers from '@/helpers/helpers';
+    import {mapGetters,mapActions} from 'vuex';
     export default {
         name:'AppHeader',
+        components:{
+            SearchBox,
+        },
+        methods:{
+            logout(){
+                Helpers.showLoading();
+                this.$store.dispatch('logout').then(resp=>{
+                    this.$router.push('/login');
+                    Helpers.closeLoading();
+                }).catch(Helpers.feedback);
+            }
+        },
+        computed:{
+            ...mapGetters([
+                'getIsLogged'
+            ]),
+
+        },
     }
 </script>

@@ -15,39 +15,60 @@
             </div>
         </section>
         <div class="container login-container">
-            <h5 class="title-head">ĐĂNG NHẬP TÀI KHOẢN</h5>
+            <h5 class="title-head text-uppercase">Đăng nhập</h5>
             <div class="row">
                 <div class="col-lg-6">
-                    <aside>Nếu bạn đã có tài khoản, đăng nhập tại đây</aside>
-                    <form action="" class="login-form">
-                        <label title="">
-                            <h6>Email*</h6>
-                            <input type="email" placeholder="Email">
-                        </label>
-                        <label title="">
-                            <h6>Mật khẩu*</h6>
-                            <input type="password" placeholder="Mật khẩu">
-                        </label>
+                    <aside>Nếu bạn đã có tài khoản, đăng nhập tại đây.</aside>
+                    <form @submit.prevent="login" class="login-form">
+                        <div class="form-group">
+                            <label>Email <span class="text-danger">*</span></label>
+                            <input type="email" v-model="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu <span class="text-danger">*</span></label>
+                            <input type="password" v-model="password"  placeholder="Mật khẩu">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                            <router-link to="/register" tag="button" class="btn">Đăng ký</router-link>
+                        </div>
                     </form>
-                    <div> <button class="btn btn-success">Đăng nhập</button> <button class="btn">Đăng kí</button></div>
                 </div>
                 <div class="col-lg-6">
                     <aside>Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua email.</aside>
                     <form action="" class="login-form">
-                        <label title="">
-                            <h6>Email*</h6>
+                        <div class="form-group">
+                            <label>Email <span class="text-danger">*</span></label>
                             <input type="email" placeholder="Email">
-                        </label>
+                        </div>
                     </form>
-                    <div> <button class="btn btn-success">Lấy lại mật khẩu</button></div>
+                    <div> <button class="btn btn-primary">Lấy lại mật khẩu</button></div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import Helpers from '@/helpers/helpers';
     export default {
-
+        data(){
+            return {
+                email:'',
+                password:''
+            };
+        },
+        methods:{
+            login(){
+                Helpers.showLoading();
+                this.$store.dispatch('login',{
+                    email:this.email,
+                    password:this.password,
+                }).then(resp=>{
+                    this.$router.push('/');
+                    Helpers.closeLoading();
+                }).catch(Helpers.feedback);
+            },
+        }
     }
 </script>
 <style scoped src="@/assets/css/login.css">

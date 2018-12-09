@@ -74,23 +74,3 @@
         }
     }
 </script>
-<style>
-    .cate-normal, .cate-hover{
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        left: 10px;
-        background-size: contain !important;
-        background-repeat: no-repeat !important;
-    }
-    .cate-hover{
-        opacity: 0;
-    }
-    li.nav_item:hover .cate-normal{
-        opacity: 0;
-    }
-    li.nav_item:hover .cate-hover{
-        opacity: 1;
-    }
-</style>

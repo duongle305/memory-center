@@ -1,6 +1,6 @@
 <template>
     <div class="baner">
-        <Slider></Slider>
+        <Slider @finish="finish"></Slider>
         <div class="baner__scale text-center">
             <div class="container">
                 <div class="row">
@@ -49,6 +49,11 @@
     export default {
         components:{
             Slider,
+        },
+        methods:{
+          finish(){
+            this.$emit('finish');
+          }
         }
     }
 </script>

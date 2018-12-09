@@ -24,7 +24,8 @@
         mounted(){
             this.$store.dispatch('apiGetBrands').then(resp=>{
                 this.isF = true;
-                });
+                this.$emit('finish')
+            });
         },
         computed:{
             ...mapGetters([

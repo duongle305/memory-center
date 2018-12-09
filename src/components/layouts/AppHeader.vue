@@ -83,7 +83,9 @@
           }
         },
         mounted(){
-          this.$store.dispatch('apiGetLogo')
+          if(this.getLogo === ''){
+            this.$store.dispatch('apiGetLogo')
+          }
         },
         components:{
             SearchBox,

@@ -59,6 +59,9 @@
                 error:'',
             };
         },
+        mounted(){
+          Helpers.closeLoading();
+        },
         methods:{
             validate(){
                 this.error = '';

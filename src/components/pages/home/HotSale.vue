@@ -15,6 +15,8 @@
                          :price="product.price"
                          :discount="product.discount"
                          :stars="product.stars"
+                         :slug="product.slug"
+                         :id="product.id"
                 ></Product>
             </carousel>
             </div>
@@ -34,6 +36,7 @@
         mounted(){
             this.$store.dispatch('apiGetSaleProducts').then(resp=>{
                 this.isF = true;
+                this.$emit('finish');
             });
         },
         computed:{

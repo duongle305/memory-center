@@ -21,7 +21,7 @@
             </div>
             <div class="product-action">
                 <form action="">
-                    <router-link tag="button" to="/login" class="product-action-buy">
+                    <router-link tag="button" :to="{path:'/product/'+slug+'.'+id}" class="product-action-buy">
                         <i class="fa fa-shopping-basket"></i>
                         <span>tùy chọn</span>
                     </router-link>
@@ -33,7 +33,7 @@
 </template>
 <script>
     export default {
-        props:['title','thumbnail','price','stars','discount'],
+        props:['id','slug','title','thumbnail','price','stars','discount'],
         data(){
             return{
 

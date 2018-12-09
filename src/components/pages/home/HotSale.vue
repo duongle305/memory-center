@@ -15,6 +15,8 @@
                          :price="product.price"
                          :discount="product.discount"
                          :stars="product.stars"
+                         :slug="product.slug"
+                         :id="product.id"
                 ></Product>
             </carousel>
             </div>

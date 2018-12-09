@@ -6,6 +6,7 @@ import Login from "@/components/pages/login/Login";
 import Register from "@/components/pages/register/Register";
 import Customer from "@/components/pages/customer/Customer";
 import Category from "@/components/pages/category/Category";
+import Product from "@/components/pages/product/Product";
 
 Vue.use(Router);
 
@@ -35,6 +36,11 @@ const router =  new Router({
       path:'/category/:slug',
       name:'Category',
       component: Category,
+    },
+    {
+      path:'/product/:slug.:id',
+      name:'Product',
+      component: Product,
     },
     { path: '*', redirect: '/' }
   ],

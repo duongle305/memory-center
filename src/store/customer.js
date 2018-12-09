@@ -5,6 +5,7 @@ const customer = {
         isLogged: false,
         token:'',
         customer:{},
+        logo:'',
     },
     getters:{
         getIsLogged(state){
@@ -12,6 +13,9 @@ const customer = {
         },
         getCustomer(state){
             return state.customer;
+        },
+        getLogo(state){
+          return state.logo
         }
     },
     mutations:{
@@ -25,6 +29,10 @@ const customer = {
         setCustomer(state, customer){
             state.customer = customer;
         },
+        setLogo(state,logo){
+          state.logo = logo
+        },
+
     },
     actions:{
         register:(context, credentials)=>{
@@ -82,8 +90,17 @@ const customer = {
                     reject(err);
                 })
             });
+        },
+        apiGetLogo:(context)=>{
+          return new Promise((resole, reject)=>{
+            api.get('logo').then(resp=>{
+              context.commit('setLogo',resp.data);
+              resole(resp.data)
+            }).catch(err=>{
+              reject(err);
+            })
+          });
         }
-
     }
 };
 export default customer;

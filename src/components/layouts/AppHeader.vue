@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-3 " id="header__main__logo">
                         <i class="fas fa-bars icon-colapse"></i>
-                        <router-link to="/"><img src="@/assets/image/logo.png" alt=""></router-link>
+                        <router-link to="/"><img :src="getLogo" alt=""></router-link>
                     </div>
                     <SearchBox></SearchBox>
                     <div class="col-md-12 col-lg-4 mt-1 ">
@@ -79,6 +79,14 @@
     import {mapGetters,mapActions} from 'vuex';
     export default {
         name:'AppHeader',
+        data(){
+          return{
+            logo:null
+          }
+        },
+        mounted(){
+          this.$store.dispatch('apiGetLogo')
+        },
         components:{
             SearchBox,
         },
@@ -89,13 +97,13 @@
                     this.$router.push('/login');
                     Helpers.closeLoading();
                 }).catch(Helpers.feedback);
-            }
+            },
         },
         computed:{
             ...mapGetters([
-                'getIsLogged'
+                'getIsLogged',
+                'getLogo'
             ]),
-
         },
     }
 </script>

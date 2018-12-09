@@ -52,46 +52,15 @@
 
                     <div class="product-colection__container">
                         <div class="row product-colection__list">
-                            <div class="col-6 col-md-4 col-lg-3 product-colection__list__item">
-                                <div class="product-box">
-                                    <!-- hinh minh hoa   -->
-                                    <div class="product-img">
-                                        <img src="http://bizweb.dktcdn.net/thumb/medium/100/329/122/products/micro-kingston-canvas-select-16gb-01.jpg?v=1543294063490" alt="">
-                                    </div>
-                                    <!-- phan thong tin san pham -->
-                                    <div class="product-info">
-                                        <!-- ten san pham -->
-                                        <h3 class="product-name"><a href="" title="SSD Samsung 860 Evo 250GB 2.5-Inch SATA III MZ-76E250BW">
-                                            SSD Samsung 860 Evo 250GB 2.5-Inch SATA III MZ-76E250BW
-                                        </a>
-                                        </h3>
-                                        <!-- danhgia san pham -->
-                                        <div class="product-review-star">
-                                            <i class="fas fa-star" ></i>
-                                            <i class="fas fa-star" ></i>
-                                            <i class="fas fa-star" ></i>
-                                            <i class="fas fa-star" ></i>
-                                            <i class="fas fa-star" ></i>
-                                        </div>
-                                        <!-- gia chi tiet san pham -->
-                                        <div class="product-price">
-                                            <div class="new-price price">1850000</div>
-                                            <div class="old-price price">2000000</div>
-                                        </div>
-                                        <!-- option san pham -->
-                                        <div class="product-action">
-                                            <form action="">
-                                                <button type="" class="product-action-buy">
-                                                    <i class="fa fa-shopping-basket"></i>
-                                                    <span>tùy chọn</span>
-                                                </button>
-                                                <a href="" class="product-action-view"> <i class="fa fa-eye" ></i>
-                                                </a>
-                                            </form>
-                                        </div>
-                                        <!-- het option san pham -->
-                                    </div>
-                                </div>
+                            <span class="alert alert-info" style="width: 100%;" v-if="!products.length">Không có sản phẩm nào</span>
+                            <div v-else v-if="isFinish" v-for="(items,index) in products" class="col-6 col-md-4 col-lg-3 product-colection__list__item">
+                                <Product v-for="(item,index2) in items" :key="index2"
+                                         :title="item.title"
+                                         :thumbnail="item.thumbnail"
+                                         :price="item.price"
+                                         :discount="item.discount"
+                                         :stars="item.stars"
+                                ></Product>
                             </div>
                         </div>
                     </div>
@@ -216,21 +185,78 @@
 </template>
 <script>
     import {mapActions, mapGetters} from 'vuex';
+    import Product from '@/components/Product';
+    import Helpers from '@/helpers/helpers';
+    import api from '@/helpers/api';
     export default {
+        components:{
+            Product
+        },
+        mounted(){
+
+        },
+        created() {
+            this.isF = false;
+            this.apiGetCategoryProducts(this.$route.params.slug).then(resp=>{
+                this.isF = true;
+            });
+        },
+        watch: {
+            // call again the method if the route changes
+            '$route': 'fecthData'
+        },
         data(){
             return {
-
+                categoryProducts:{
+                    data:[],
+                },
+                isF: false,
             };
         },
         computed:{
             ...mapGetters([
-                'getCategories'
+                'getCategories',
             ]),
-
+            isFinish(){
+                return this.isF;
+            },
+            products(){
+                let products = [];
+                let i = 0, length = this.categoryProducts.data.length;
+                let tmp = 0;
+                let twoProducts = [];
+                for(i = 0; i < length; i++){
+                    tmp++;
+                    if(tmp > 2){
+                        tmp = 0;
+                        twoProducts = [];
+                    }else{
+                        this.categoryProducts.data[i].thumbnail = Helpers.imgUrl + this.categoryProducts.data[i].thumbnail;
+                        this.categoryProducts.data[i].stars = parseInt(Math.random()*5);
+                        twoProducts.push(this.categoryProducts.data[i]);
+                        if(twoProducts.length == 2) products.push(twoProducts);
+                    }
+                }
+                return products;
+            }
         },
         methods:{
-
-
+            fecthData(){
+                this.apiGetCategoryProducts(this.$route.params.slug);
+            },
+            apiGetCategoryProducts(category) {
+                this.categoryProducts = {
+                    data:[],
+                };
+                return new Promise((resolve, reject)=>{
+                    api.get('/category/'+category).then(resp=>{
+                        this.categoryProducts = resp.data;
+                        resolve(resp);
+                    }).catch(err=>{
+                        reject(err);
+                    })
+                });
+            }
         }
     }
 </script>

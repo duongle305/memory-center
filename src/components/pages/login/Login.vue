@@ -19,6 +19,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <aside>Nếu bạn đã có tài khoản, đăng nhập tại đây.</aside>
+                    <span class="text-danger" v-if="error">{{ error }}</span>
                     <form @submit.prevent="login" class="login-form">
                         <div class="form-group">
                             <label>Email <span class="text-danger">*</span></label>
@@ -54,19 +55,43 @@
         data(){
             return {
                 email:'',
-                password:''
+                password:'',
+                error:'',
             };
         },
         methods:{
+            validate(){
+                this.error = '';
+                if(this.email == '' || this.password == ''){
+                    this.error = 'Vui lòng nhập đầy đủ thông tin đăng nhập';
+                    Helpers.closeLoading();
+                    return false;
+                }
+                return true;
+            },
             login(){
                 Helpers.showLoading();
-                this.$store.dispatch('login',{
-                    email:this.email,
-                    password:this.password,
-                }).then(resp=>{
-                    this.$router.push('/');
-                    Helpers.closeLoading();
-                }).catch(Helpers.feedback);
+                if(this.validate()){
+                    this.$store.dispatch('login',{
+                        email:this.email,
+                        password:this.password,
+                    }).then(resp=>{
+                        this.$router.push('/');
+                        Helpers.closeLoading();
+                    }).catch(err=>{
+                        if(err.response.status == 401) {
+                            if(err.response.data.error == 'invalid_credentials'){
+                                this.error = 'Thông tin đăng nhập không chính xác vui lòng kiểm tra lại.';
+                            }
+                        }
+                        if(err.response.status == 500){
+                            if(err.response.data.error == 'could_not_create_token'){
+                                this.error = 'Có lỗi trong quá trình xử lý vui lòng thử lại sau.';
+                            }
+                        }
+                        Helpers.closeLoading();
+                    });
+                }
             },
         }
     }

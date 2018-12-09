@@ -143,12 +143,17 @@ const customer = {
         },
         apiGetLogo:(context)=>{
           return new Promise((resole, reject)=>{
-            api.get('logo').then(resp=>{
-              context.commit('setLogo',resp.data);
-              resole(resp.data)
-            }).catch(err=>{
-              reject(err);
-            })
+              if(Helpers.getLogoUrl()){
+                context.commit('setLogo', Helpers.getLogoUrl())
+              }else{
+                  api.get('logo').then(resp=>{
+                      Helpers.setLogoUrl(resp.data);
+                      context.commit('setLogo',resp.data);
+                      resole(resp.data)
+                  }).catch(err=>{
+                      reject(err);
+                  });
+              }
           });
         }
     }

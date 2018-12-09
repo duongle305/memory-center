@@ -21,6 +21,12 @@ const Helpers = {
             if(preloader)
                 !preloader.classList.contains('hide') ?  preloader.classList.add('hide') : '';
         },500);
+    },
+    getLogoUrl(){
+       return  localStorage.getItem('logo_url') ? localStorage.getItem('logo_url') : false;
+    },
+    setLogoUrl(url){
+        localStorage.setItem('logo_url',url);
     }
 };
 export default Helpers;

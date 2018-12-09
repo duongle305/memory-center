@@ -16,8 +16,8 @@
 
 
             <div class="product-price">
-                <div class="new-price price">{{ priceDiscount }}</div>
-                <div v-if="discount" class="old-price price">{{ price }}</div>
+                <div class="new-price price" >{{ priceDiscount }}</div>
+                <div v-if="discount > 0" class="old-price price">{{ normalPrice  }}</div>
             </div>
             <div class="product-action">
                 <form action="">
@@ -36,12 +36,16 @@
         props:['id','slug','title','thumbnail','price','stars','discount'],
         data(){
             return{
-
             };
         },
+        methods:{
+        },
         computed:{
+            normalPrice(){
+                return this.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+            },
             priceDiscount(){
-                return this.price - (this.discount/100)*this.price;
+                return (this.price - (this.discount/100)*this.price).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
             }
         }
     }

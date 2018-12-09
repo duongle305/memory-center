@@ -1,11 +1,6 @@
 <template>
     <div class="baner">
-        <div class="container-fluid">
-            <carousel :autoplay="true" :nav="false" :items="1" :dots="false" :loop="true">
-                <img src="@/assets/image/slider_4.png" alt="">
-                <img src="@/assets/image/slider_1.png" alt="">
-            </carousel>
-        </div>
+        <Slider></Slider>
         <div class="baner__scale text-center">
             <div class="container">
                 <div class="row">
@@ -50,9 +45,10 @@
     </div>
 </template>
 <script>
-    import carousel from 'vue-owl-carousel'
+    import Slider from '@/components/pages/home/Slider';
     export default {
-        name:'AppBanner',
-        components:{ carousel }
+        components:{
+            Slider,
+        }
     }
 </script>

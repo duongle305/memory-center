@@ -8,8 +8,8 @@
             </div>
         </div>
         <div class="container-fluid">
-            <carousel :margin="30" :responsiveClass="true" :autoWidth="true" :loop="true" :nav="false" :dots="false" :responsive="{0:{items:2},600:{items:5},1000:{items:7}}">
-                <img v-for="(brand,index) in brands" :src="brand.logo" alt="" :key="index">
+            <carousel v-if="isFinish" :margin="30" :responsiveClass="true" :autoWidth="false" :loop="true" :nav="false" :dots="false" :responsive="{0:{items:2},600:{items:5},1000:{items:7}}">
+                <router-link v-for="item in brands" to="login"><img  :src="item.logo" alt=""></router-link>
             </carousel>
         </div>
     </div>
@@ -22,15 +22,20 @@
     export default {
         components:{carousel},
         mounted(){
-            this.$store.dispatch('apiGetBrands');
+            this.$store.dispatch('apiGetBrands').then(resp=>{
+                this.isF = true;
+                });
         },
         computed:{
             ...mapGetters([
                 'getBrands',
             ]),
+
+            isFinish(){
+                return this.isF;
+            },
             brands(){
                 return this.getBrands.map((item)=>{
-                    console.log(item);
                     item.logo = Helpers.imgUrl + item.logo;
                     return item;
                 });
@@ -38,7 +43,7 @@
         },
         data(){
             return {
-
+                isF: false
             };
         }
     }

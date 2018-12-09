@@ -75,22 +75,10 @@
     }
 </script>
 <style>
-    .cate-normal, .cate-hover{
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        left: 10px;
-        background-size: contain !important;
-        background-repeat: no-repeat !important;
-    }
-    .cate-hover{
-        opacity: 0;
-    }
-    li.nav_item:hover .cate-normal{
-        opacity: 0;
-    }
-    li.nav_item:hover .cate-hover{
-        opacity: 1;
-    }
+  .wrap-main .list-menu .nav-item:first-child>.nav-link {
+    color: #1C87E5;
+  }
+  .wrap-main .list-menu .nav-item:hover>.nav-link {
+    color: #1C87E5;
+  }
 </style>

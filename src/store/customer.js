@@ -8,6 +8,7 @@ const customer = {
         provinces:[],
         districts:[],
         wards:[],
+        logo:'',
     },
     getters:{
         getIsLogged(state){
@@ -24,6 +25,9 @@ const customer = {
         },
         getWards(state){
             return state.wards;
+        },
+        getLogo(state){
+          return state.logo
         }
     },
     mutations:{
@@ -45,7 +49,10 @@ const customer = {
         },
         setWards(state, wards){
             state.wards = wards;
-        }
+        },
+        setLogo(state,logo){
+          state.logo = logo
+        },
     },
     actions:{
         register:(context, credentials)=>{
@@ -133,8 +140,17 @@ const customer = {
                     reject(err);
                 })
             });
+        },
+        apiGetLogo:(context)=>{
+          return new Promise((resole, reject)=>{
+            api.get('logo').then(resp=>{
+              context.commit('setLogo',resp.data);
+              resole(resp.data)
+            }).catch(err=>{
+              reject(err);
+            })
+          });
         }
-
     }
 };
 export default customer;

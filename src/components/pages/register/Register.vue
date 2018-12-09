@@ -51,19 +51,25 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>Tỉnh/Thành phố</label>
-                                <v-select :options="options" placeholder="Tỉnh/Thành phố"></v-select>
+                                <v-select label="name" :options="getProvinces"  @search="onSearch" placeholder="Tỉnh/Thành phố">
+                                    <template slot="no-options">Không tìm thấy kết quả</template>
+                                </v-select>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>Quận/Huyện</label>
-                                <v-select :options="options" placeholder="Quận/Huyện"></v-select>
+                                <v-select  placeholder="Quận/Huyện">
+                                    <template slot="no-options">Không tìm thấy kết quả</template>
+                                </v-select>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label>Phường/Xã</label>
-                                <v-select :options="options" placeholder="Phường/Xã"></v-select>
+                                <v-select placeholder="Phường/Xã">
+                                    <template slot="no-options">Không tìm thấy kết quả</template>
+                                </v-select>
                             </div>
                         </div>
                     </div>
@@ -79,12 +85,45 @@
 </template>
 <script>
     import Vue from 'vue';
+    import {mapGetters, mapActions} from 'vuex';
     import vSelect from 'vue-select';
     Vue.component('v-select',vSelect);
     export default {
+        computed:{
+            ...mapGetters([
+                'getProvinces',
+                'getDistricts',
+                'getWards',
+            ]),
+            provinces(){
+                return this.getProvinces.map((item)=>{
+                    return {
+
+                    };
+                });
+            }
+        },
+        methods:{
+            ...mapActions([
+                'apiGetProvinces'
+            ]),
+            onSearch(search, loading){
+                loading(true);
+                this.search(loading,search);
+            },
+            search(loading, search) {
+                this.apiGetProvinces(search).then(resp => {
+                    loading(false);
+                }).catch(err => {
+                    loading(false);
+                })
+            },
+        },
         data(){
             return {
-                options:['a','b','c']
+                provinceId:0,
+                districtId: 0,
+                wardId: 0,
             };
         }
     }

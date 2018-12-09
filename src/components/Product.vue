@@ -16,8 +16,8 @@
 
 
             <div class="product-price">
-                <div class="new-price price">{{ price }}</div>
-                <div v-if="discount" class="old-price price">{{ priceDiscount }}</div>
+                <div class="new-price price">{{ priceDiscount }}</div>
+                <div v-if="discount" class="old-price price">{{ price }}</div>
             </div>
             <div class="product-action">
                 <form action="">
@@ -41,7 +41,7 @@
         },
         computed:{
             priceDiscount(){
-                return (this.discount/100)*this.price;
+                return this.price - (this.discount/100)*this.price;
             }
         }
     }

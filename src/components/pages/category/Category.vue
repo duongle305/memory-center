@@ -53,11 +53,163 @@
                     <div class="product-colection__container">
                         <div class="row product-colection__list">
                             <div class="col-6 col-md-4 col-lg-3 product-colection__list__item">
-
+                                <div class="product-box">
+                                    <!-- hinh minh hoa   -->
+                                    <div class="product-img">
+                                        <img src="http://bizweb.dktcdn.net/thumb/medium/100/329/122/products/micro-kingston-canvas-select-16gb-01.jpg?v=1543294063490" alt="">
+                                    </div>
+                                    <!-- phan thong tin san pham -->
+                                    <div class="product-info">
+                                        <!-- ten san pham -->
+                                        <h3 class="product-name"><a href="" title="SSD Samsung 860 Evo 250GB 2.5-Inch SATA III MZ-76E250BW">
+                                            SSD Samsung 860 Evo 250GB 2.5-Inch SATA III MZ-76E250BW
+                                        </a>
+                                        </h3>
+                                        <!-- danhgia san pham -->
+                                        <div class="product-review-star">
+                                            <i class="fas fa-star" ></i>
+                                            <i class="fas fa-star" ></i>
+                                            <i class="fas fa-star" ></i>
+                                            <i class="fas fa-star" ></i>
+                                            <i class="fas fa-star" ></i>
+                                        </div>
+                                        <!-- gia chi tiet san pham -->
+                                        <div class="product-price">
+                                            <div class="new-price price">1850000</div>
+                                            <div class="old-price price">2000000</div>
+                                        </div>
+                                        <!-- option san pham -->
+                                        <div class="product-action">
+                                            <form action="">
+                                                <button type="" class="product-action-buy">
+                                                    <i class="fa fa-shopping-basket"></i>
+                                                    <span>tùy chọn</span>
+                                                </button>
+                                                <a href="" class="product-action-view"> <i class="fa fa-eye" ></i>
+                                                </a>
+                                            </form>
+                                        </div>
+                                        <!-- het option san pham -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <aside class="col-lg-3 product-filter">
+                    <div class="product-filter__open">
+                    <span>
+                        <i class="fa fa-align-right"></i>
+                    </span>
+                    </div>
+                    <div class="product-filter__close">
+                    <span>
+                        <i class="fa fa-times"></i>
+                    </span>
+                    </div>
+                    <div class="aside__filter">
+                        <div class="">
+                            <h2 class="aside__filter__title">Thương hiệu</h2>
+                            <form action="" id="formsearch-category">
+                                <input id="searchbox-category" type="search" placeholder="Lọc theo thương hiệu">
+                                <button type="submit" id="submit-category" class="btn btn-success"><i class="fas fa-search"></i></button>
+                            </form>
+                            <ul class="aside__filter__checklist">
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">Corsair</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">Kingstone</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">Lexar</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">Samsung</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">Sandisk</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <h2 class="aside__filter__title">Giá sản phẩm</h2>
+                        <div id="slider-range"></div>
+                        <div class="aside__filter__price">
+                            <input  class="money" id="min-value-filter" type="text" readonly>
+                            <i class="ti-minus"></i>
+                            <input class="money" id="max-value-filter" type="text" readonly>
+                            <button class="aside__filter__price-button">Lọc giá</button>
+                        </div>
+                        <div class="">
+                            <h2 class="aside__filter__title">Dung lượng</h2>
+
+                            <ul class="aside__filter__checklist">
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">16 GB</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">32 GB</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">64 GB</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">128 GB</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">256 GB</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="checklist-item">
+                                        <input type="checkbox" class="checkbox" value="Corsair">
+                                        <span class="checkmark"></span>
+                                        <span class="checktitle">512 GB</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <li class="nav_item">
+  <router-link :to="{path:'/category/'+category.slug}" tag="li" class="nav_item">
     <span class="cate-normal" v-if="mainCategory" :style="normalBackground"></span>
     <span class="cate-hover" v-if="mainCategory" :style="hoverBackground"></span>
     <router-link :to="{path:'/category/'+category.slug}" :title="category.title">
@@ -9,7 +9,7 @@
     <ul v-if="withSub" class="row ul_content_right_1">
       <CategoryItem v-for="(categoryChild, index) in category.children" :category="categoryChild" :key="index"></CategoryItem>
     </ul>
-  </li>
+  </router-link>
 </template>
 <script>
   import Helpers from '@/helpers/helpers';

@@ -5,6 +5,9 @@ const customer = {
         isLogged: false,
         token:'',
         customer:{},
+        provinces:[],
+        districts:[],
+        wards:[],
         logo:'',
     },
     getters:{
@@ -13,6 +16,15 @@ const customer = {
         },
         getCustomer(state){
             return state.customer;
+        },
+        getProvinces(state){
+            return state.provinces
+        },
+        getDistricts(state){
+            return state.districts;
+        },
+        getWards(state){
+            return state.wards;
         },
         getLogo(state){
           return state.logo
@@ -29,10 +41,18 @@ const customer = {
         setCustomer(state, customer){
             state.customer = customer;
         },
+        setProvinces(state, provinces){
+            state.provinces = provinces;
+        },
+        setDistricts(state, districts){
+            state.districts = districts;
+        },
+        setWards(state, wards){
+            state.wards = wards;
+        },
         setLogo(state,logo){
           state.logo = logo
         },
-
     },
     actions:{
         register:(context, credentials)=>{
@@ -45,6 +65,36 @@ const customer = {
                 }).catch(err=>{
                     reject(err);
                 });
+            });
+        },
+        apiGetProvinces(context, search){
+            return new Promise((resolve, reject)=>{
+                api.get('/provinces',{keyword: search}).then(resp=>{
+                    context.commit('setProvinces',resp.data);
+                    resolve(resp);
+                }).catch(err=>{
+                    reject(err);
+                })
+            });
+        },
+        apiGetDistricts(context, provinceId){
+            return new Promise((resolve, reject)=>{
+                api.get('/provinces',{province_id:provinceId}).then(resp=>{
+                    context.commit('setDistricts',resp.data);
+                    resolve(resp);
+                }).catch(err=>{
+                    reject(err);
+                })
+            });
+        },
+        apiGetWards(context, districtId){
+            return new Promise((resolve, reject)=>{
+                api.get('/wards',{district_id: districtId}).then(resp=>{
+                    context.commit('setWards',resp.data);
+                    resolve(resp);
+                }).catch(err=>{
+                    reject(err);
+                })
             });
         },
         login: (context, credentials)=>{

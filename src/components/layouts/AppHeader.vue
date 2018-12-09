@@ -5,8 +5,6 @@
                 <div class="row">
                     <span class="col-4 d-none d-lg-block text-left">Mở cửa: 9h đến 20h, chủ nhật 10h đến 16h</span>
                     <div class="col-sm-12 col-lg-6 ml-md-auto header__info__new">
-                        <span><i class="fas fa-map-marker-alt"></i> Hệ thống cửa hàng</span>
-                        <span><i class="fas fa-star"></i> Khuyến Mãi Hot</span>
                         <span class="header__info__new__user"><i class="fas fa-user-alt"></i> Tài khoản
                         <div id="user-info">
                             <router-link v-if="!getIsLogged" to="/login">Đăng nhập</router-link>

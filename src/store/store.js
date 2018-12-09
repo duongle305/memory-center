@@ -4,12 +4,16 @@ import search from '@/store/search';
 import user from '@/store/customer';
 import category from '@/store/category';
 import brand from '@/store/brand';
+import slider from '@/store/slider';
+import saleProduct from '@/store/saleProduct';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
         search,
         user,
         category,
-        brand
+        brand,
+        slider,
+        saleProduct,
     },
 });

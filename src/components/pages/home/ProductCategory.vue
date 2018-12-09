@@ -67,7 +67,7 @@
                         twoProducts = [];
                     }else{
                         twoProducts.push(this.categoryProducts.data[i]);
-                        if(twoProducts.length == 2) products.push(twoProducts);
+                        if(twoProducts.length <= 2) products.push(twoProducts);
                     }
                 }
                 return products;

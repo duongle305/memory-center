@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="category__title">
-                            <div class="category__title__name ">SSD</div>
+                            <div class="category__title__name ">{{ name }}</div>
                             <div class="category__title__toogle">
                                 <span></span>
                                 <span></span>
@@ -13,8 +13,7 @@
                             </div>
                             <div class="category__title__list ">
                                 <ul class="list-category">
-                                    <li class="nav_item"><a target="_blank" href="" title="SSD DĐ 120 → 128GB">SSD 120 → 128GB</a></li>
-                                    <li class="nav_item about"><a target="_blank" href="" title="Xem tất cả">Xem tất cả</a></li>
+                                    <li class="nav_item about"><router-link :to="{path:'/category/'+category}">Xem tất cả</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -23,7 +22,7 @@
                 <div class="row">
                     <div class="col-lg-9  col-12 category__down">
                         <div class="category__down__carousel">
-                            <carousel v-if="isFinish">
+                            <carousel v-if="isFinish" :resposive="{0: {items: 1, nav: false, loop: false}, 600: { items: 2, nav: false, loop: false},  1000: { items: 3, nav: false, loop: false }, 1200: { items: 3, nav: false } }">
                                 <TwoProduct :twoProducts="item" v-for="(item, index) in products" :key="index"></TwoProduct>
                             </carousel>
                         </div>
@@ -37,9 +36,11 @@
     import api from '@/helpers/api';
     import carousel from 'vue-owl-carousel';
     import TwoProduct from '@/components/TwoProduct';
+    import Helpers from '@/helpers/helpers';
     export default {
         props:{
             category: String,
+            name:String,
         },
         components:{
             carousel,
@@ -60,15 +61,24 @@
                 let i = 0, length = this.categoryProducts.data.length;
                 let tmp = 0;
                 let twoProducts = [];
-                for(i = 0; i < length; i++){
-                    tmp++;
-                    if(tmp > 2){
-                        tmp = 0;
-                        twoProducts = [];
-                    }else{
-                        twoProducts.push(this.categoryProducts.data[i]);
-                        if(twoProducts.length <= 2) products.push(twoProducts);
+                if(length != 1){
+                    for(i = 0; i < length; i++){
+                        tmp++;
+                        if(tmp > 2){
+                            tmp = 0;
+                            twoProducts = [];
+                        }else{
+                            this.categoryProducts.data[i].thumbnail = Helpers.imgUrl + this.categoryProducts.data[i].thumbnail;
+                            this.categoryProducts.data[i].stars = parseInt(Math.random()*5);
+                            twoProducts.push(this.categoryProducts.data[i]);
+                            if(twoProducts.length == 2) products.push(twoProducts);
+                        }
                     }
+                }
+                if(length%2 != 0) {
+                    this.categoryProducts.data[length-1].thumbnail = Helpers.imgUrl + this.categoryProducts.data[length-1].thumbnail;
+                    this.categoryProducts.data[length-1].stars = parseInt(Math.random()*5);
+                    products.push([this.categoryProducts.data[length-1]]);
                 }
                 return products;
             }

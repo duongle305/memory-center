@@ -2,8 +2,8 @@
     <div>
         <Banner @finish="finish"></Banner>
         <HotSale @finish="finish"></HotSale>
-        <ProductCategory @finish="finish" :category="'ssd'"></ProductCategory>
-        <ProductCategory @finish="finish" :category="'ram-may-tinh'"></ProductCategory>
+        <ProductCategory @finish="finish" :name="'SSD'" :category="'ssd'"></ProductCategory>
+        <ProductCategory @finish="finish" :name="'Ram'" :category="'ram-may-tinh'"></ProductCategory>
         <Brand @finish="finish"></Brand>
     </div>
 </template>

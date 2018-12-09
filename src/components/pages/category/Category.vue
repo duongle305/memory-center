@@ -197,11 +197,10 @@
         },
         created() {
             this.isF = false;
-            this.fecthData();
+            this.fetchData();
         },
         watch: {
-            // call again the method if the route changes
-            '$route': 'fecthData'
+            '$route': 'fetchData'
         },
         data(){
             return {
@@ -223,23 +222,30 @@
                 let i = 0, length = this.categoryProducts.data.length;
                 let tmp = 0;
                 let twoProducts = [];
-                for(i = 0; i < length; i++){
-                    tmp++;
-                    if(tmp > 2){
-                        tmp = 0;
-                        twoProducts = [];
-                    }else{
-                        this.categoryProducts.data[i].thumbnail = Helpers.imgUrl + this.categoryProducts.data[i].thumbnail;
-                        this.categoryProducts.data[i].stars = parseInt(Math.random()*5);
-                        twoProducts.push(this.categoryProducts.data[i]);
-                        if(twoProducts.length == 2) products.push(twoProducts);
+                if(length != 1){
+                    for(i = 0; i < length; i++){
+                        tmp++;
+                        if(tmp > 2){
+                            tmp = 0;
+                            twoProducts = [];
+                        }else{
+                            this.categoryProducts.data[i].thumbnail = Helpers.imgUrl + this.categoryProducts.data[i].thumbnail;
+                            this.categoryProducts.data[i].stars = parseInt(Math.random()*5);
+                            twoProducts.push(this.categoryProducts.data[i]);
+                            if(twoProducts.length == 2) products.push(twoProducts);
+                        }
                     }
+                }
+                if(length%2 != 0) {
+                    this.categoryProducts.data[length-1].thumbnail = Helpers.imgUrl + this.categoryProducts.data[length-1].thumbnail;
+                    this.categoryProducts.data[length-1].stars = parseInt(Math.random()*5);
+                    products.push([this.categoryProducts.data[length-1]]);
                 }
                 return products;
             }
         },
         methods:{
-            fecthData(){
+            fetchData(){
                 this.apiGetCategoryProducts(this.$route.params.slug).then(resp=>{
                     this.isF = true;
                     Helpers.closeLoading();

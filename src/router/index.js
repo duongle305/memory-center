@@ -7,6 +7,7 @@ import Register from "@/components/pages/register/Register";
 import Customer from "@/components/pages/customer/Customer";
 import Category from "@/components/pages/category/Category";
 import Product from "@/components/pages/product/Product";
+import Search from "@/components/pages/search/Search";
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ const router =  new Router({
       path:'/product/:slug.:id',
       name:'Product',
       component: Product,
+    },
+    {
+      path:'/search/q=:q',
+      name:'Search',
+      component: Search,
     },
     { path: '*', redirect: '/' }
   ],

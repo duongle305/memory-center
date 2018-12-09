@@ -14,8 +14,8 @@
               <div class="product-show__info">
                 <div class="product-info">
                   <!-- ten san pham -->
-                  <h3 class="product-name"><a href="" title="SSD Samsung 860 Evo 250GB 2.5-Inch SATA III MZ-76E250BW">
-                    SSD Samsung 860 Evo 250GB 2.5-Inch SATA III MZ-76E250BW
+                  <h3 class="product-name"><a href="" :title="getProductName">
+                    {{ getProductName }}
                   </a>
                   </h3>
                   <div class="product-review-star">
@@ -26,17 +26,17 @@
                     <i class="far fa-star"></i>
                   </div>
                   <div class="product-status">
-                    <span>Thương hiệu:</span>&nbsp;<span class="product-status__check">{{ getBrand.name }}</span>
+                    <span>Thương hiệu:</span>&nbsp;<span v-if="isLoaded" class="product-status__check">{{ getBrand.name }}</span>
                     |
                     <span>Tình trạng:</span>&nbsp;<span class="product-status__check">Còn hàng</span>
                   </div>
                   <!-- gia chi tiet san pham -->
-                  <div class="product-price" v-if="getDiscount > 0">
-                    <div class="new-price price">{{ discountPrice(getProductPrice,getDiscount) }}</div>
-                    <div class="old-price price">{{ getProductPrice }}</div>
+                  <div class="product-price" v-if="getDiscount > 0 && isLoaded">
+                    <div class="new-price price">{{ formatPrice(discountPrice(getProductPrice,getDiscount)) }}</div>
+                    <div class="old-price price">{{ formatPrice(getProductPrice) }}</div>
                   </div>
-                  <div class="product-price" v-else>
-                    <div class="new-price price">{{ getProductPrice }}</div>
+                  <div class="product-price" v-else-if="isLoaded">
+                    <div class="new-price price">{{ formatPrice(getProductPrice) }}</div>
                   </div>
                   <div class="product-description">
                     <ul>
@@ -233,12 +233,16 @@
       ...mapGetters([
         'getBrand',
         'getProductPrice',
-        'getDiscount'
+        'getDiscount',
+        'getProductName'
       ])
     },
     methods:{
       discountPrice(price,discount){
         return price - (price*(discount/100))
+      },
+      formatPrice(price){
+        return price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
       }
     }
   }

@@ -64,6 +64,6 @@ router.beforeEach((to, from, next) => {
   next();
 });
 router.afterEach((to, from, next)=>{
-  Helpers.closeLoading();
+  // Helpers.closeLoading();
 });
 export default router;

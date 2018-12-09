@@ -28,7 +28,8 @@ const customer = {
         },
         getLogo(state){
           return state.logo
-        }
+        },
+
     },
     mutations:{
         setIsLogged(state, status){
@@ -53,6 +54,7 @@ const customer = {
         setLogo(state,logo){
           state.logo = logo
         },
+
     },
     actions:{
         register:(context, credentials)=>{
@@ -136,6 +138,7 @@ const customer = {
             return new Promise((resole, reject)=>{
                 api.post('auth/me').then(resp=>{
                     context.commit('setCustomer',resp.data);
+                    resole(resp);
                 }).catch(err=>{
                     reject(err);
                 })

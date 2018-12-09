@@ -2,10 +2,12 @@
   <div>
     <breadcurmb></breadcurmb>
     <product-container :isLoaded="isLoaded"></product-container>
+    <product-detail :isLoaded="isLoaded"></product-detail>
   </div>
 </template>
 <script>
   import ProductContainer from '@/components/pages/product/ProductContainer';
+  import ProductDetail from '@/components/pages/product/ProductDetail';
   import BreadCurmb from '@/components/pages/product/BreadCurmb';
   import Helpers from '@/helpers/helpers';
 
@@ -19,7 +21,8 @@
     },
     components: {
       'product-container': ProductContainer,
-      'breadcurmb': BreadCurmb
+      'breadcurmb': BreadCurmb,
+      'product-detail':ProductDetail
     },
     mounted() {
       this.id = this.$route.params.id;

@@ -57,16 +57,19 @@
                 password:''
             };
         },
+        mounted(){
+          Helpers.closeLoading();
+        },
         methods:{
             login(){
                 Helpers.showLoading();
-                this.$store.dispatch('login',{
-                    email:this.email,
-                    password:this.password,
-                }).then(resp=>{
-                    this.$router.push('/');
-                    Helpers.closeLoading();
-                }).catch(Helpers.feedback);
+              this.$store.dispatch('login',{
+                email:this.email,
+                password:this.password,
+              }).then(resp=>{
+                this.$router.push('/');
+                Helpers.closeLoading();
+              }).catch(Helpers.feedback);
             },
         }
     }

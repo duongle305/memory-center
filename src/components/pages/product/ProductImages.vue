@@ -13,10 +13,10 @@
       carousel
     },
     mounted(){
-      Helpers.closeLoading();
     },
     computed:{
       loaded(){
+        if(this.isLoaded) Helpers.closeLoading();
         return this.isLoaded
       },
       ...mapGetters([

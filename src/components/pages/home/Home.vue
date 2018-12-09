@@ -1,20 +1,37 @@
 <template>
     <div>
-        <Banner></Banner>
-        <HotSale></HotSale>
-        <Brand></Brand>
+        <Banner @finish="finish"></Banner>
+        <HotSale @finish="finish"></HotSale>
+        <Brand @finish="finish"></Brand>
     </div>
 </template>
 <script>
+    import Helpers from '@/helpers/helpers';
     import Banner from '@/components/pages/home/Banner'
     import Brand from '@/components/pages/home/Brand'
     import HotSale from '@/components/pages/home/HotSale'
     export default {
-        name:'Home',
-        components:{
-            Banner,
-            Brand,
-            HotSale
+      name:'Home',
+      data(){
+        return{
+          total:0
         }
+      },
+      components:{
+        Banner,
+        Brand,
+        HotSale
+      },
+      mounted(){
+
+      },
+      methods:{
+        finish(){
+          this.total++;
+          if(this.total === 3){
+            Helpers.closeLoading();
+          }
+        }
+      }
     }
 </script>

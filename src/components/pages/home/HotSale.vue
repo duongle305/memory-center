@@ -36,6 +36,7 @@
         mounted(){
             this.$store.dispatch('apiGetSaleProducts').then(resp=>{
                 this.isF = true;
+                this.$emit('finish');
             });
         },
         computed:{

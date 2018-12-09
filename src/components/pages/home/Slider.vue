@@ -17,6 +17,7 @@
         mounted(){
             this.$store.dispatch('apiGetSliders').then(resp=>{
                 this.isF = true;
+                this.$emit('finish');
             });
         },
         computed:{

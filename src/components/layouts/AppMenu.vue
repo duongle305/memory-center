@@ -74,11 +74,4 @@
         }
     }
 </script>
-<style>
-  .wrap-main .list-menu .nav-item:first-child>.nav-link {
-    color: #1C87E5;
-  }
-  .wrap-main .list-menu .nav-item:hover>.nav-link {
-    color: #1C87E5;
-  }
-</style>
+

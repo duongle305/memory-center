@@ -50,10 +50,10 @@
                         </div>
                     </div>
 
-                    <div class="product-colection__container">
+                    <div class="product-colection__container" v-if="isFinish">
                         <div class="row product-colection__list">
                             <span class="alert alert-info" style="width: 100%;" v-if="!products.length">Không có sản phẩm nào</span>
-                            <div v-else v-if="isFinish" v-for="(items,index) in products" class="col-6 col-md-4 col-lg-3 product-colection__list__item">
+                            <div v-else v-for="(items,index) in products" class="col-6 col-md-4 col-lg-3 product-colection__list__item">
                                 <Product v-for="(item,index2) in items" :key="index2"
                                          :title="item.title"
                                          :thumbnail="item.thumbnail"
@@ -197,9 +197,7 @@
         },
         created() {
             this.isF = false;
-            this.apiGetCategoryProducts(this.$route.params.slug).then(resp=>{
-                this.isF = true;
-            });
+            this.fecthData();
         },
         watch: {
             // call again the method if the route changes
@@ -242,7 +240,10 @@
         },
         methods:{
             fecthData(){
-                this.apiGetCategoryProducts(this.$route.params.slug);
+                this.apiGetCategoryProducts(this.$route.params.slug).then(resp=>{
+                    this.isF = true;
+                    Helpers.closeLoading();
+                });
             },
             apiGetCategoryProducts(category) {
                 this.categoryProducts = {

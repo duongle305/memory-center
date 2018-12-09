@@ -2,8 +2,8 @@
     <div>
         <Banner @finish="finish"></Banner>
         <HotSale @finish="finish"></HotSale>
-        <ProductCategory :category="'ssd'"></ProductCategory>
-        <ProductCategory :category="'ram-may-tinh'"></ProductCategory>
+        <ProductCategory @finish="finish" :category="'ssd'"></ProductCategory>
+        <ProductCategory @finish="finish" :category="'ram-may-tinh'"></ProductCategory>
         <Brand @finish="finish"></Brand>
     </div>
 </template>
@@ -30,7 +30,7 @@
       methods:{
         finish(){
           this.total++;
-          if(this.total === 3){
+          if(this.total === 5){
             Helpers.closeLoading();
           }
         }

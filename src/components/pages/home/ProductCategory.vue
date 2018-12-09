@@ -23,8 +23,8 @@
                 <div class="row">
                     <div class="col-lg-9  col-12 category__down">
                         <div class="category__down__carousel">
-                            <carousel>
-                                <TwoProduct :twoProducts="item" v-for="(item, index) in products"></TwoProduct>
+                            <carousel v-if="isFinish">
+                                <TwoProduct :twoProducts="item" v-for="(item, index) in products" :key="index"></TwoProduct>
                             </carousel>
                         </div>
                     </div>
@@ -45,16 +45,16 @@
             carousel,
             TwoProduct,
         },
-        beforeRouteEnter (to, from, next) {
-
-        },
-        beforeRouteUpdate (to, from, next) {
-
-        },
         mounted(){
-            this.apiGetCategoryProducts();
+            this.apiGetCategoryProducts().then(resp=>{
+                this.isF = true;
+                this.$emit('finish');
+            });
         },
         computed:{
+            isFinish(){
+                return this.isF
+            },
             products(){
                 let products = [];
                 let i = 0, length = this.categoryProducts.data.length;
@@ -90,6 +90,7 @@
                 categoryProducts:{
                     data:[],
                 },
+                isF:false,
             };
         }
     }

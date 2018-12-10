@@ -5,10 +5,13 @@
             <span v-if="discount" class="product-img__flash-share">- {{ discount }}%</span>
         </div>
         <div class="product-info">
-            <h3 class="product-name"><a href="" :title="title">
-                {{ title }}
-            </a>
-            </h3>
+            <router-link :to="{path:'/product/'+slug+'.'+id}">
+                <h3 class="product-name">
+                    <a href="" :title="title">
+                    {{ title }}
+                    </a>
+                </h3>
+            </router-link>
             <div class="product-review-star">
                 <i class="fas fa-star" v-for="n in stars"></i>
                 <i class="fas fa-star" style="color: lightgray;" v-for="n in 5-stars"></i>

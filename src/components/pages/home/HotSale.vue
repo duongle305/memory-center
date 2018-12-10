@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 hot-deal__title p-3">
-                    <h2><b style="color: red;">BIG SALE</b> 10.10</h2>
+                    <h2><b style="color: red;">BIG SALE</b> 10.12</h2>
                 </div>
             </div>
             <div class="row">

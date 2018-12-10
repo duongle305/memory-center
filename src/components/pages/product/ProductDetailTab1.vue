@@ -36,7 +36,6 @@
           $(toggleTab).text("Xem đầy đủ");
 
           $(toggleTab).click(event=>{
-            console.log(toggle_tab);
             if (toggle_tab===0) {
               $(tab1).css("height", "unset");
               $(tabFlur).hide();

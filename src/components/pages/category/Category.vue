@@ -60,6 +60,8 @@
                                          :price="item.price"
                                          :discount="item.discount"
                                          :stars="item.stars"
+                                         :id="item.id"
+                                         :slug="item.slug"
                                 ></Product>
                             </div>
                         </div>

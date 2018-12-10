@@ -3,6 +3,11 @@ const search = {
     state:{
         products:[],
     },
+    getters:{
+        getProducts(state){
+            return state.products;
+        }
+    },
     mutations:{
         setProducts(state, products){
             state.products = products;

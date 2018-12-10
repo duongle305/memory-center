@@ -16,9 +16,7 @@
         },
         methods:{
             search(){
-                this.$store.dispatch('search',this.keyword).then(resp=>{
-                    this.$router.push('/search');
-                }).catch(Helpers.feedback);
+                this.$router.push({path:'/search/q='+this.keyword});
             }
         }
     }

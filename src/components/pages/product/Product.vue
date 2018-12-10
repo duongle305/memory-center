@@ -45,3 +45,4 @@
 </script>
 
 <style src="@/assets/css/product.css"></style>
+

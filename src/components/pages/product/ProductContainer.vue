@@ -46,33 +46,6 @@
                       <li>Bảo hành 5 năm 1 đổi 1 </li>
                     </ul>
                   </div>
-                  <div class="product-gift">
-                    <div class="row no-gutters">
-                      <div class="product-gift__list col-12 col-md-6">
-                        <div class="product-gift__list__title">
-                                               <span>Vui lòng chọn quà tặng:
-                                                </span>
-                        </div>
-                        <ul class="list-gift">
-                          <li class="list-gift__item"><a href="#">
-                            <img src="image/imgproduct/01-tuot-no-vit2a0e.jpg" alt=""></a>
-                            <div class="img-tooltip">Tuốc-nơ-vít 31 đầu</div>
-                          </li>
-                          <li class="list-gift__item">
-                            <a href="#">
-                              <img src="image/imgproduct/02-desktop-kit2a0e.jpg" alt="">
-                            </a>
-                            <div class="img-tooltip">Destop Kit</div>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="product-gift__img col-12 col-md-5">
-                        <div id="gift-img">
-                          <img id="gift-img-show" src="image/imgproduct/02-desktop-kit2a0e.jpg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <div class="product-select-number">
                     <h6>Số lượng</h6>
                     <div class="product-select">

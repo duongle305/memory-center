@@ -87,8 +87,12 @@
     import Vue from 'vue';
     import {mapGetters, mapActions} from 'vuex';
     import vSelect from 'vue-select';
+    import Helpers from '@/helpers/helpers';
     Vue.component('v-select',vSelect);
     export default {
+        mounted(){
+          Helpers.closeLoading();
+        },
         computed:{
             ...mapGetters([
                 'getProvinces',

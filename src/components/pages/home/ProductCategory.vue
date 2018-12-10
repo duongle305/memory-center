@@ -20,9 +20,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9  col-12 category__down">
+                    <div class="col-lg-9 col-12 category__down order-2">
                         <div class="category__down__carousel">
-                            <carousel v-if="isFinish" :resposive="{0: {items: 1, nav: false, loop: false}, 600: { items: 2, nav: false, loop: false},  1000: { items: 3, nav: false, loop: false }, 1200: { items: 3, nav: false } }">
+                            <carousel v-if="isFinish" :navText="['<i class=\'ti-angle-left\'></i>','<i class=\'ti-angle-right\'></i>']" :responsive="{0: {items: 1, nav: false, loop: false}, 600: { items: 2, nav: false, loop: false},  1000: { items: 3, nav: false, loop: false }, 1200: { items: 3, nav: false } }">
                                 <TwoProduct :twoProducts="item" v-for="(item, index) in products" :key="index"></TwoProduct>
                             </carousel>
                         </div>

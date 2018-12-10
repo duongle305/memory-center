@@ -7,6 +7,7 @@ import brand from '@/store/brand';
 import slider from '@/store/slider';
 import saleProduct from '@/store/saleProduct';
 import singleProduct from '@/store/singleProduct';
+import cart from '@/store/cart';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -16,6 +17,7 @@ export default new Vuex.Store({
         brand,
         slider,
         saleProduct,
-        singleProduct
+        singleProduct,
+        cart
     },
 });
